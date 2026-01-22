@@ -36,6 +36,15 @@ add_executable(test_mc_edge_cases
 )
 target_include_directories(test_mc_edge_cases PRIVATE include)
 
+add_executable(performance
+  benchmarks/performance.cpp
+  src/black_scholes.cpp
+  src/monte_carlo.cpp
+  src/random.cpp
+)
+target_include_directories(performance PRIVATE include)
+
+
 
 
 
