@@ -5,15 +5,40 @@ project(options-pricing-engine LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(test_greeks
-tests/test_greeks.cpp
-src/black_scholes.cpp
-src/greeks.cpp
-src/random.cpp
+add_executable(test_mc
+  tests/test_mc.cpp
+  src/black_scholes.cpp
+  src/monte_carlo.cpp
+  src/random.cpp
 )
 
+target_include_directories(test_mc PRIVATE include)
 
-target_include_directories(test_greeks PRIVATE include)
+add_executable(test_mc_regression
+  tests/test_mc_regression.cpp
+  src/black_scholes.cpp
+  src/monte_carlo.cpp
+  src/random.cpp
+)
+target_include_directories(test_mc_regression PRIVATE include)
+
+add_executable(test_mc_variance_reduction
+  tests/test_mc_variance_reduction.cpp
+  src/monte_carlo.cpp
+  src/random.cpp
+)
+target_include_directories(test_mc_variance_reduction PRIVATE include)
+
+add_executable(test_mc_edge_cases
+  tests/test_mc_edge_cases.cpp
+  src/monte_carlo.cpp
+  src/random.cpp
+)
+target_include_directories(test_mc_edge_cases PRIVATE include)
+
+
+
+
 
 
 
