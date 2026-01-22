@@ -25,8 +25,9 @@ namespace {
     }
 }
 
+
 double callPrice(double S, double K, double T, double r, double sigma) {
-    if (S <= 0.0 || K<=0.0 || T <= 0.0 || sigma <= 0.0 ) {
+    if (S <= 0.0 || K<=0.0 || T <= 0.0 || sigma < 0.0 ) {
         return NAN;
     }
     if (T == 0.0) { 
@@ -36,14 +37,12 @@ double callPrice(double S, double K, double T, double r, double sigma) {
         return std::max(S - K * std::exp(-r * T),0.0);
     }
 
-    const double d1_val = d1(S, K, T, r, sigma);
-    const double d2_val = d2(d1_val, T, sigma);
+    const double d1_val = bs_d1(S, K, T, r, sigma);
+    const double d2_val = bs_d2_from_d1(d1_val,T,sigma);
     const double df = std::exp(-r * T);
 
     return S * normal_cdf(d1_val) - K * df * normal_cdf(d2_val);
 }
-
-
 
 double putPrice(double S, double K, double T, double r, double sigma) {
     if (S <= 0.0 || K <= 0.0 || T < 0.0 || sigma < 0.0) {
@@ -53,17 +52,18 @@ double putPrice(double S, double K, double T, double r, double sigma) {
     if (T == 0.0) { 
     return put_intrinsic(S, K);
     }
-    
+
     if (sigma == 0.0) {
         return std::max(K * std::exp(-r * T) - S, 0.0);
     }
 
-    const double d1_val = d1(S, K, T, r, sigma);
-    const double d2_val = d2(d1_val, T, sigma);
+    const double d1_val = bs_d1(S, K, T, r, sigma);
+    const double d2_val = bs_d2_from_d1(d1_val, T, sigma);
     const double df = std::exp(-r * T);
 
     return K * df * normal_cdf(-d2_val) - S * normal_cdf(-d1_val);
 }
+
 
 
 

@@ -14,3 +14,12 @@ double normal_pdf(double x) {
 double normal_cdf(double x) {
     return 0.5 * std::erfc(-x /std::sqrt(2.0));
 }
+
+double bs_d1(double S, double K, double T, double r, double sigma) {
+    const double vol_sqrtT = sigma * std::sqrt(T);
+    return (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / vol_sqrtT;
+}
+
+double bs_d2_from_d1(double d1, double T, double sigma) {
+    return d1 - sigma * std::sqrt(T);
+}
