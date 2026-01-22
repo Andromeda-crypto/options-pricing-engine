@@ -44,6 +44,15 @@ add_executable(performance
 )
 target_include_directories(performance PRIVATE include)
 
+add_executable(options_pricer
+  src/main.cpp
+  src/black_scholes.cpp
+  src/greeks.cpp
+  src/monte_carlo.cpp
+  src/random.cpp
+)
+
+target_include_directories(options_pricer PRIVATE include)
 
 
 
