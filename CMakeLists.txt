@@ -50,9 +50,21 @@ add_executable(options_pricer
   src/greeks.cpp
   src/monte_carlo.cpp
   src/random.cpp
+  src/implied_vol.cpp
 )
 
 target_include_directories(options_pricer PRIVATE include)
+
+
+add_executable(test_iv
+  tests/test_iv.cpp
+  src/black_scholes.cpp
+  src/greeks.cpp
+  src/implied_vol.cpp
+  src/random.cpp
+)
+target_include_directories(test_iv PRIVATE include)
+
 
 
 
