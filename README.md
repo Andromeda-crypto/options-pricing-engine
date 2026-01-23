@@ -156,74 +156,27 @@ options-pricing-engine/
 
 The analytical pricing uses the standard Black-Scholes formula for European options:
 
-- **Call Price**: 𝐶
-(
-𝑆
-0
-,
-𝐾
-,
-𝑇
-,
-𝑟
-,
-𝜎
-)
-=
-𝑆
-0
- 
-𝑁
-(
-𝑑
-1
-)
-−
-𝐾
-𝑒
-−
-𝑟
-𝑇
-𝑁
-(
-𝑑
-2
-)
-C(S
-0
-	​
+**Call Price:**
+$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$
 
-,K,T,r,σ)=S
-0
-	​
-
-N(d
-1
-	​
-
-)−Ke
-−rT
-N(d
-2
-	​
-
-)
-- **Put Price**: \(P = K e^{-rT} N(-d_2) - S_0 N(-d_1)\)
+**Put Price:**
+$$P = K e^{-rT} N(-d_2) - S_0 N(-d_1)$$
 
 Where:
 
-- \(d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}\)
-- \(d_2 = d_1 - \sigma\sqrt{T}\)
+$$d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$$
+
+$$d_2 = d_1 - \sigma\sqrt{T}$$
 
 ### Monte Carlo Methods
 
 The Monte Carlo implementation uses geometric Brownian motion for path simulation:
 
-\[S_T = S_0 \exp\left((r - \frac{\sigma^2}{2})T + \sigma\sqrt{T}Z\right)\]
+$$S_T = S_0 \exp\left((r - \frac{\sigma^2}{2})T + \sigma\sqrt{T}Z\right)$$
 
 **Variance Reduction Techniques:**
 
-1. **Antithetic Variates**: Uses both \(Z\) and \(-Z\) to reduce variance
+1. **Antithetic Variates**: Uses both $Z$ and $-Z$ to reduce variance
 2. **Control Variate**: Uses Black-Scholes analytical price as control to reduce variance
 3. **Combined Method**: Applies both techniques simultaneously for maximum efficiency
 
