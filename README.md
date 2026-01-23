@@ -1,10 +1,10 @@
 # Options Pricing Engine
 
-A high-performance C++ library for pricing European options using analytical methods (Black-Scholes) and numerical simulation (Monte Carlo). This project demonstrates advanced quantitative finance techniques, including variance reduction methods, Greeks computation, and implied volatility calculation.
+A performance-focused C++ library for pricing European options using analytical methods (Black-Scholes) and numerical simulation (Monte Carlo). This project demonstrates advanced quantitative finance techniques, including variance reduction methods, Greeks computation, and implied volatility calculation.
 
 ## Overview
 
-This options pricing engine provides a comprehensive suite of tools for quantitative analysis of European call and put options. The implementation focuses on accuracy, performance, and extensibility, making it suitable for both educational purposes and production-grade quantitative finance applications.
+This options pricing engine provides a comprehensive suite of tools for quantitative analysis of European call and put options. The implementation focuses on accuracy, performance, and extensibility, making it suitable for both educational purposes and designed with production-style engineering practices in mind.
 
 ## Features
 
@@ -14,7 +14,7 @@ This options pricing engine provides a comprehensive suite of tools for quantita
 - **Monte Carlo Simulation**: Flexible numerical pricing with multiple variance reduction techniques:
   - Plain Monte Carlo
   - Antithetic variates
-  - Control variate (using Black-Scholes as control)
+  - Control variate using analytically known expectations under Black–Scholes dynamics
   - Combined antithetic + control variate
 
 ### Advanced Capabilities
@@ -26,7 +26,7 @@ This options pricing engine provides a comprehensive suite of tools for quantita
 - **Implied Volatility**: Newton-Raphson-based solver to extract implied volatility from market prices
 - **Statistical Analysis**: Monte Carlo results include standard errors and 95% confidence intervals
 
-### Engineering Excellence
+### Engineering
 
 - **Comprehensive Testing**: Unit tests covering edge cases, regression scenarios, and variance reduction validation
 - **Performance Benchmarks**: Built-in benchmarking suite for performance analysis
@@ -93,6 +93,11 @@ The main `options_pricer` executable provides a flexible command-line interface 
 
 # With variance reduction
 ./options_pricer --method mc --type call --spot 100 --strike 100 --T 1 --r 0.05 --sigma 0.2 --mode anti+cv --paths 200000 --seed 7
+
+# Sample output
+Price: 10.45
+StdErr: 0.012
+95% CI: [10.43, 10.47]
 ```
 
 ### Command-Line Options
@@ -122,7 +127,7 @@ The main `options_pricer` executable provides a flexible command-line interface 
 
 ## Project Structure
 
-```
+```bash
 
 options-pricing-engine/
 ├── include/              # Header files
