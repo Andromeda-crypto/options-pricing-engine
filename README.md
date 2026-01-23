@@ -156,7 +156,58 @@ options-pricing-engine/
 
 The analytical pricing uses the standard Black-Scholes formula for European options:
 
-- **Call Price**: \(C = S_0 N(d_1) - K e^{-rT} N(d_2)\)
+- **Call Price**: 𝐶
+(
+𝑆
+0
+,
+𝐾
+,
+𝑇
+,
+𝑟
+,
+𝜎
+)
+=
+𝑆
+0
+ 
+𝑁
+(
+𝑑
+1
+)
+−
+𝐾
+𝑒
+−
+𝑟
+𝑇
+𝑁
+(
+𝑑
+2
+)
+C(S
+0
+	​
+
+,K,T,r,σ)=S
+0
+	​
+
+N(d
+1
+	​
+
+)−Ke
+−rT
+N(d
+2
+	​
+
+)
 - **Put Price**: \(P = K e^{-rT} N(-d_2) - S_0 N(-d_1)\)
 
 Where:
